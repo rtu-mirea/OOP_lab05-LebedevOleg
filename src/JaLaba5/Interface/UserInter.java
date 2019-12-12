@@ -9,6 +9,7 @@ public class UserInter extends JFrame {
     private JButton but2 = new JButton("Изменить личные данные");
     public static User us;
     private static int num;
+    public static int index;
 
 
     public UserInter(User user, int temp){

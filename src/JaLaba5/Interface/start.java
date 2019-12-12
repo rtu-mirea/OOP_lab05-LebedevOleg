@@ -1,6 +1,5 @@
 package JaLaba5.Interface;
-import JaLaba5.Main;
-import JaLaba5.User;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;

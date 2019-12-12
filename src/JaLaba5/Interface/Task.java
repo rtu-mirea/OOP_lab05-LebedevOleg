@@ -1,17 +1,16 @@
 package JaLaba5.Interface;
 import JaLaba5.Main;
 import JaLaba5.Project;
-import JaLaba5.User;
+
 import javax.swing.*;
-import java.awt.event.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 
 
 public class Task extends JFrame {
-    Object[] headers = {"Логин","Название проекта", "Баллы", "Приз"};
-    Object[][] data = new Object[4][Main.projects.size()];
+    String[] headers = {"Логин","Название проекта", "Баллы", "Приз"};
+    String[][] data = new String[Main.projects.size()][4];
     private JTable jTable;
 
     public Task(int budjet,int min_summ){
@@ -52,10 +51,15 @@ public class Task extends JFrame {
             }
             for (int x = 0; x < project.size(); x++) {
                 if (project.get(x).getUser().getPrice() >= min_summ){
-                    data[0][x] = project.get(x).getUser().getLogin();
-                    data[1][x] = project.get(x).getName();
-                    data[2][x] = project.get(x).getUser().getPrice();
+                    String x1 = String.valueOf(project.get(x).getUser().getPrice());
+                    String x2 = String.valueOf(project.get(x).getPoint());
+                    data[x][0] = project.get(x).getUser().getLogin();
+                    data[x][1] = project.get(x).getName();
+                    data[x][2] = x2;
+                    data[x][3] = x1;
                 }
+                else
+                    break;
             }
         }
 

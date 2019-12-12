@@ -1,7 +1,8 @@
 package JaLaba5.Interface;
 import JaLaba5.Main;
+import JaLaba5.Project;
 import JaLaba5.User;
-import JaLaba5.Interface.UserInter;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -36,6 +37,10 @@ public class Change extends JFrame{
         public void actionPerformed(ActionEvent e){
             User user = new User(txt1.getText(),txt2.getText(),txt3.getText());
             UserInter.us = user;
+            Project project = Main.projects.get(UserInter.index);
+            project.setUser(user);
+            Main.projects.set(UserInter.index,project);
+            setVisible(false);
         }
     }
 }

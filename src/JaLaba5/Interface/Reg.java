@@ -35,9 +35,18 @@ public class Reg extends JFrame {
     }
     class AddU implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            User user = new User(txt1.getText(),txt2.getText(),txt3.getText());
-            Main.users.add(user);
-            JOptionPane.showMessageDialog(null,"Login:" + Main.users.get(Main.users.size()-1).getLogin() + "password: " + Main.users.get(Main.users.size()-1).getPassword(),"message",JOptionPane.PLAIN_MESSAGE);
+            for(User i : Main.users){
+                if(i.getLogin().equals(txt2.getText())){
+                    JOptionPane.showMessageDialog(null,"Такой логин уже найден, зарегистрируйте другой","message",JOptionPane.PLAIN_MESSAGE);
+                    break;
+                }
+                else{
+                    User user = new User(txt1.getText(),txt2.getText(),txt3.getText());
+                    Main.users.add(user);
+                    JOptionPane.showMessageDialog(null,"Login:" + Main.users.get(Main.users.size()-1).getLogin() + "password: " + Main.users.get(Main.users.size()-1).getPassword(),"message",JOptionPane.PLAIN_MESSAGE);
+                    break;
+                }
+            }
         }
     }
 

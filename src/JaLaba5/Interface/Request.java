@@ -1,8 +1,7 @@
 package JaLaba5.Interface;
 import JaLaba5.Main;
 import JaLaba5.Project;
-import JaLaba5.User;
-import JaLaba5.Interface.UserInter;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -34,8 +33,16 @@ public class Request extends JFrame{
     class work implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try{
-                Project project = new Project(Main.users.get(temp),txt1.getText(),Integer.parseInt(txt2.getText()));
-                Main.projects.add(project);
+                if(UserInter.us.cheak() == false) {
+                    Project project = new Project(Main.users.get(temp), txt1.getText(), Integer.parseInt(txt2.getText()));
+                    Main.projects.add(project);
+                    UserInter.index = Main.projects.indexOf(project);
+                    UserInter.us.setCheak(true);
+                    setVisible(false);
+                }
+                else
+                    JOptionPane.showMessageDialog(null,"Этот пользователь уже зарегстрировал проект");
+
             }
             catch (Exception a){
                 JOptionPane.showMessageDialog(null,"Вы ввели неправлиные данные","message",JOptionPane.PLAIN_MESSAGE);

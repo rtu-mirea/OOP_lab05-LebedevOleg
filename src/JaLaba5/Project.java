@@ -1,11 +1,14 @@
 package JaLaba5;
 
-public class Project {
-    private User user = null;
-    private String name;
-    private int point;
+import java.io.Serializable;
+
+ public class  Project implements Serializable {
+     public User user;
+     private String name;
+     private int point;
 
     public Project(){
+        user = new User();
         name = "";
         point = 0;
     }
@@ -18,6 +21,7 @@ public class Project {
     public int getPoint() {
         return point;
     }
+
 
     public String getName() {
         return name;
@@ -38,4 +42,5 @@ public class Project {
     public void setUser(User user) {
         this.user = user;
     }
+
 }

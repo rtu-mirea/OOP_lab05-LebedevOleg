@@ -1,7 +1,7 @@
 package JaLaba5.Interface;
 import JaLaba5.Main;
 import JaLaba5.User;
-import JaLaba5.Interface.UserInter;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -30,16 +30,23 @@ public class Enter extends JFrame {
     }
     class login implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for(User i : Main.users){
-                if(txt2.getText().equals("admin") && txt3.getText().equals("1111")){
+            int c = 0;
+            for(User i : Main.users) {
+                if (txt2.getText().equals("admin") && txt3.getText().equals("1111")) {
                     AdminInter adminInter = new AdminInter();
-                }
-                else if(i.getLogin().equals(txt2.getText()) && i.getPassword().equals(txt3.getText())) {
-                    int temp =Main.users.indexOf(i);
-                    UserInter userInter = new UserInter(i,temp);
-
+                    c = 1;
+                    break;
+                } else if (i.getLogin().equals(txt2.getText()) && i.getPassword().equals(txt3.getText())) {
+                    int temp = Main.users.indexOf(i);
+                    UserInter userInter = new UserInter(i, temp);
+                    c = 1;
+                    break;
                 }
             }
+            if(c == 0){
+                JOptionPane.showMessageDialog(null,"Аккаунт не найден","message",JOptionPane.PLAIN_MESSAGE);
+            }
+
         }
     }
 }

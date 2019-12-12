@@ -1,12 +1,11 @@
 package JaLaba5.Interface;
 import JaLaba5.FileClass;
 import JaLaba5.Main;
-import JaLaba5.User;
+import JaLaba5.Project;
 
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class MainForm  extends JFrame {
     private  JButton but1 = new JButton("Войти");
@@ -23,11 +22,13 @@ public class MainForm  extends JFrame {
         Container container = this.getContentPane();
         container.setLayout(new GridLayout(2,1,2,2));
         but1.addActionListener(new Login());
-        container.add(but1);
         but2.addActionListener(new Registration());
-        container.add(but2);
         but3.addActionListener(new Read());
+        but4.addActionListener(new Write());
+        container.add(but1);
+        container.add(but2);
         container.add(but3);
+        container.add(but4);
     }
     class Login implements ActionListener{
         public void actionPerformed(ActionEvent e){
@@ -41,19 +42,38 @@ public class MainForm  extends JFrame {
     }
     class Read implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            JFileChooser fileChooser = new JFileChooser("C:/Users/gnus/Documents/Институт/Java/JaLaba5");
+            JFileChooser fileChooser = new JFileChooser("C:/Git/OOP_lab05-LebedevOleg");
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             int res = fileChooser.showOpenDialog(fileChooser);
-            String name = fileChooser.getSelectedFile().getName();
+            String name = fileChooser.getSelectedFile().getPath();
             FileClass file = new FileClass();
             try {
                 Main.projects = file.reading(name);
+                for(Project i : Main.projects){
+                    Main.users.add(i.getUser());
+                }
             }
             catch (Exception a){
-                System.out.println(a.getMessage());
+                System.out.println(a);
                 //JOptionPane.showMessageDialog(null, "error", "message",JOptionPane.PLAIN_MESSAGE);
             }
 
+        }
+    }
+    class Write implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            JFileChooser fileChooser = new JFileChooser("C:/Git/OOP_lab05-LebedevOleg");
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            int res = fileChooser.showOpenDialog(fileChooser);
+            String name = fileChooser.getSelectedFile().getAbsolutePath();
+            //File selectedFile = fileChooser.getSelectedFile();
+            FileClass file = new FileClass();
+            try{
+                file.write(Main.projects,name);
+            }
+            catch (Exception a){
+                System.out.println(a);
+            }
         }
     }
 }

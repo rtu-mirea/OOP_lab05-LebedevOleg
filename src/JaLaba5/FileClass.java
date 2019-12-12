@@ -6,11 +6,10 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Scanner;
 
-public class FileClass {
+public class FileClass implements Serializable {
     private String fname = "";
-    private Scanner in = new Scanner(System.in);
+    private ArrayList<Project> temp;
 
     public void write(ArrayList<Project> carts,String name) throws Exception {
         fname = name;
@@ -19,11 +18,11 @@ public class FileClass {
         oos.writeObject(carts);
     }
 
-    public ArrayList<Project> reading(String naming) throws Exception {
+    public ArrayList<Project> reading(String naming) throws Exception  {
         fname = naming;
         FileInputStream in = new FileInputStream(fname);
         ObjectInputStream oin = new ObjectInputStream(in);
-
-        return (ArrayList) oin.readObject();
+        temp = (ArrayList) oin.readObject();
+        return temp;
     }
 }

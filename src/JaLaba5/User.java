@@ -1,14 +1,14 @@
 package JaLaba5;
-import java.util.Scanner;
+import java.io.Serializable;
 
-public class User {
+
+public  class User implements Serializable {
     private String name;
     private String login;
     private String password;
 
     private int price;
     private boolean cheak = false;
-    private Scanner in = new Scanner(System.in);
     public User(){
         name = "judge";
         login = "admin";
